@@ -1,6 +1,6 @@
 let currentImageIndex = 0;
 let flipProgress = 0;
-const displayDuration = 5000; // Display duration in ms
+const displayDuration = 3000; // Display duration in ms
 const flipDuration = 2000; // Flip duration in ms
 const flipInterval = 20; // Interval between animation frames in ms
 
