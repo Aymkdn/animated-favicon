@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated favicon</title>
+    <link rel="shortcut icon" href="https://github.githubassets.com/favicons/favicon.png" type="image/png" id="favicon">
+</head>
+<body>
+    <script>
+        const favicon = document.getElementById('favicon');
+        const images = [
+            'https://github.githubassets.com/favicons/favicon.png',
+            'https://github.githubassets.com/favicons/favicon.png'
+        ];
+
+        function initWorker() {
+            const worker = new Worker('favicon_worker.js');
+            worker.postMessage({ type: 'init', images: images });
+
+            worker.onmessage = function (e) {
+                if (e.data.type === 'updateFavicon') {
+                    favicon.href = e.data.dataUrl;
+                }
+            };
+        }
+
+        // Initialize the worker immediately
+        initWorker();
+    </script>
+</body>
+</html>
